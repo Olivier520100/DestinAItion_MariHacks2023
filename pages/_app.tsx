@@ -16,7 +16,7 @@ export default function App(props: AppProps) {
           content="minimum-scale=1, initial-scale=1, width=device-width"
         />
         <link rel = "icon" href = 
-"https://media.geeksforgeeks.org/wp-content/cdn-uploads/gfg_200X200.png" 
+"pages\craiyon_052052_low_poly_isometric_plane_flying_above_the_Earth.png" 
         type = "image/x-icon"></link>
       </Head>
 

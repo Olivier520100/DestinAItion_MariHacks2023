@@ -33,10 +33,9 @@ const useStyles = createStyles((theme) => ({
 interface CardProps {
   image: string;
   title: string;
-  category: string;
 }
 
-function Card({ image, title, category }: CardProps) {
+function Card({ image, title, }: CardProps) {
   const { classes } = useStyles();
 
   return (
@@ -48,9 +47,7 @@ function Card({ image, title, category }: CardProps) {
       className={classes.card}
     >
       <div>
-        <Text className={classes.category} size="xs">
-          {category}
-        </Text>
+        
         <Title order={3} className={classes.title}>
           {title}
         </Title>
@@ -62,7 +59,12 @@ function Card({ image, title, category }: CardProps) {
   );
 }
 
-const data = [
+
+
+
+
+export function CardsCarousel(locationsin) {
+  const data = [
   {
     image:
       'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
@@ -87,15 +89,7 @@ const data = [
     title: 'Aurora in Norway: when to visit for best experience',
     category: 'nature',
   },
-  {
-    image:
-      'https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
-    title: 'Best places to visit this winter',
-    category: 'tourism',
-  },
 ];
-
-export function CardsCarousel() {
   const theme = useMantineTheme();
   const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
   const slides = data.map((item) => (
