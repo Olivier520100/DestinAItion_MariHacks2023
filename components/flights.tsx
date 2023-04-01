@@ -17,26 +17,17 @@ const getSubHeight = (children: number, spacing: number) =>
 
 
 
-function Flights() {
+function Flights(props) {
     let flightP = []
     const [flights, setFlights] = useState([])
     const [selected, setSelected] = useState<Date[]>([]);
     const handleSelect = (date: Date) => {
-        //Change THIS TO ACTUAL AIRPORTS
-
-
-
-
-
-
-        let fromWhere = "YUL"
-        let toWhere = "ICN"
         const isSelected = selected.some((s) => dayjs(date).isSame(s, 'date'));
         if (isSelected) {
             try{
             setSelected((current) => current.filter((d) => !dayjs(d).isSame(date, 'date')));
             if (selected.length == 2){
-                let url = "https://www.cheapflights.ca/a/api/flightPricePrediction/coloredCalendar/oneWay?origin=" + fromWhere + "&destination=" + toWhere + "&dateMode=single&distinct=false"
+                let url = "https://www.cheapflights.ca/a/api/flightPricePrediction/coloredCalendar/oneWay?origin=" + props.fromWhere + "&destination=" + props.toWhere + "&dateMode=single&distinct=false"
                 fetch(url)
                     .then(response => response.json())
                     .then(json => cheapFlight(selected[0], flightP, json))
@@ -51,7 +42,7 @@ function Flights() {
         setSelected((current) => [...current, date]);
         try{
             if (selected.length == 1){
-                let url = "https://www.cheapflights.ca/a/api/flightPricePrediction/coloredCalendar/roundTrip?origin=" + fromWhere + "&destination=" + toWhere + "&dateMode=single&distinct=false"
+                let url = "https://www.cheapflights.ca/a/api/flightPricePrediction/coloredCalendar/roundTrip?origin=" + props.fromWhere + "&destination=" + props.toWhere + "&dateMode=single&distinct=false"
                 if(selected[0] < date){
                     fetch(url)
                     .then(response => response.json())
@@ -64,7 +55,7 @@ function Flights() {
                 }
             }
             else {
-                let url = "https://www.cheapflights.ca/a/api/flightPricePrediction/coloredCalendar/oneWay?origin=" + fromWhere + "&destination=" + toWhere + "&dateMode=single&distinct=false"
+                let url = "https://www.cheapflights.ca/a/api/flightPricePrediction/coloredCalendar/oneWay?origin=" + props.fromWhere + "&destination=" + props.toWhere + "&dateMode=single&distinct=false"
                 fetch(url)
                 .then(response => response.json())
                 .then(json => cheapFlight(date, flightP, json))
@@ -188,7 +179,7 @@ function Flights() {
 
                 let fullDate = dayOfWeek + ", " + month + " " + dayOfMonth + " " + year
                 return(
-                    <div style={{display: "flex", flexDirection: "column"}}>
+                    <div key = {fullDate + "container"} style={{display: "flex", flexDirection: "column"}}>
                         <div style={{marginLeft: "20px", marginBottom: "10px"}}>{fullDate}</div>
                         <div style = {{width: "50vw", backgroundColor:"#212121", display: "flex", alignItems: "center", justifyContent: "center", height: "20vh", marginLeft: "10px", marginBottom: "50px", borderRadius: "20px"}} key = {newFlights[i][0]}>
                             <div style={{fontSize: "30px", fontWeight: "bold"}} key={newFlights[i][0] + "info"}>Average Price of Ticket: {newFlights[i][1]}$ CAD</div>
@@ -207,12 +198,14 @@ function Flights() {
 
     return (
         <div style={{display: "flex", flexDirection:"row"}}>
+        <div style={{marginTop: "20vh"}}>
         <Calendar
             getDayProps={(date) => ({
             selected: selected.some((s) => dayjs(date).isSame(s, 'date')),
             onClick: () => handleSelect(date),
             })}
         />
+        </div>
         <div style={{marginLeft: "10vw"}}>        
             <div style={{marginLeft: "0", fontWeight: "bold", fontSize: "30px", color: "white", marginBottom: "20px"}}>Flights</div>
             <div style={{marginLeft: "5px", fontWeight: "bold", fontSize: "20px", marginBottom: "10px"}}>Selected</div>
