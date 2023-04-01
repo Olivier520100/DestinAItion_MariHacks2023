@@ -11,16 +11,23 @@
   "dependencies": {
     "@clerk/clerk-react": "^4.14.0",
     "@emotion/react": "^11.10.6",
+    "@mantine/carousel": "^6.0.5",
     "@mantine/core": "^6.0.5",
     "@mantine/ds": "^6.0.5",
     "@mantine/hooks": "^6.0.5",
     "@mantine/next": "^6.0.5",
+    "@react-google-maps/api": "^2.18.1",
     "@tabler/icons-react": "^2.12.0",
+    "async_hooks": "^1.0.0",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.4",
+    "google-map-react": "^2.2.0",
+    "leaflet": "^1.9.3",
     "next": "13.2.4",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-leaflet": "^4.2.1",
+    "serpapi": "^1.1.1"
   },
   "devDependencies": {
     "@types/node": "18.15.11",

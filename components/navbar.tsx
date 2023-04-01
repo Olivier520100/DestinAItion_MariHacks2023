@@ -84,12 +84,7 @@ export function NavbarMinimal() {
           {links}
         </Stack>
       </Navbar.Section>
-      <Navbar.Section>
-        <Stack justify="center" spacing={0}>
-          <NavbarLink icon={IconSwitchHorizontal} label="Change account" />
-          <NavbarLink icon={IconLogout} label="Logout" />
-        </Stack>
-      </Navbar.Section>
+      
     </Navbar>
   );
 }

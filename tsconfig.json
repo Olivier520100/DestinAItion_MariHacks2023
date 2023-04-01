@@ -22,7 +22,7 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx"
-  ],
+, "components/mapsapi.tsx", "pages/navbar.tsx", "components/carousel.tsx", "pages/destinationspage.tsx"  ],
   "exclude": [
     "node_modules"
   ]
