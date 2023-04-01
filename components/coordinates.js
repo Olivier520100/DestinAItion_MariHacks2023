@@ -1,6 +1,7 @@
 async function GetCoordinates(location) {
   const apiUrl = "https://maps.googleapis.com/maps/api/geocode/json?address=$" + location + "&key=AIzaSyBGwo4KfC880qldYVqzMODQAIEmHt0pMeo";
   console.log(apiUrl)
+  
   try {
     const response = await fetch(apiUrl);
     const data = await response.json();
