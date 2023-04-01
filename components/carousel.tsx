@@ -1,8 +1,9 @@
 import { Carousel } from '@mantine/carousel';
 import { useMediaQuery } from '@mantine/hooks';
 import { createStyles, Paper, Text, Title, Button, useMantineTheme, rem } from '@mantine/core';
-import Popup from 'reactjs-popup';
+import Pop from './popup';
 import 'reactjs-popup/dist/index.css';
+import { useState } from 'react';
 
 
 
@@ -43,6 +44,12 @@ interface CardProps {
 function Card({ image, title, text}: CardProps) {
   const { classes } = useStyles();
 
+  const [popped, setPopped] = useState(false)
+
+  function clicky(){
+    setPopped(!popped)
+  }
+
   return (
     <Paper
       shadow="md"
@@ -57,9 +64,8 @@ function Card({ image, title, text}: CardProps) {
           {title} 
         </Title>
       </div>
-          <Popup trigger={<Button variant="white" color="dark">Read More </Button>} position="right center" >
-            <div style="overflow-y:scroll;" >{text}</div>
-          </Popup>
+      <Button onClick = {clicky}variant="white"  color="dark">Read More </Button>
+      {popped? <Pop text = {text}/> : <></>}  
     </Paper>
   );
 }
