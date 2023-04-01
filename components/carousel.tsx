@@ -9,13 +9,13 @@ import { useState } from 'react';
 
 const useStyles = createStyles((theme) => ({
   card: {
-    height: rem(440),
-    display: 'flex',
+    height: rem(600),
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
     backgroundSize: 'cover',
     backgroundPosition: 'center',
+    
   },
 
   title: {

@@ -25,10 +25,10 @@ export function Map({ locationtest }) {
   if (!isLoaded) return <div>Loading maps</div>;
 
   return (
-    <div style={{ height: "400px", width: "400px"}}>
+    <div style={{ height: "600px", width: "600px"}}>
       {latgood && lnggood ? (
         <GoogleMap
-          mapContainerStyle={{ height: "100%", width: "100%" }}
+          mapContainerStyle={{ height: "100%", width: "100%", borderRadius: "10px" }}
           zoom={8}
           center={{ lat: latgood, lng: lnggood }}
         />
