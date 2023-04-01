@@ -28,8 +28,7 @@ def get_wolfram(input):
         return json.dumps(data)
     else:
         # Something went wrong, handle the error
-        print("Error: ", response.status_code)
-        return 0
+        return "Error: ", response.status_code
 
 
 @app.route('/flights/<fromWhere>/<toWhere>')
