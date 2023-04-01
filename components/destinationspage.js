@@ -1,7 +1,7 @@
 import { Container, Grid, SimpleGrid, Skeleton, useMantineTheme, rem } from '@mantine/core';
 import { Map } from "./mapsapi";
 
-import { CarouselCard } from './carousel';
+import { CardsCarousel, CarouselCard } from './carousel';
 
 const PRIMARY_COL_HEIGHT = rem(300);
 
@@ -18,7 +18,7 @@ export default function DestinationPage() {
         
           <Grid.Col span={12}>
           <div style={{ marginBottom: 10 }}>
-                <CarouselCard locationtest='Tokyo'/>
+                <CardsCarousel/>
             </div>
           </Grid.Col>
         </Grid>
