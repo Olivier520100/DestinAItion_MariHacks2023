@@ -21,7 +21,6 @@ function Flights(props) {
     let flightP = []
     const [flights, setFlights] = useState([])
     const [selected, setSelected] = useState<Date[]>([]);
-    
     const handleSelect = (date: Date) => {
         const isSelected = selected.some((s) => dayjs(date).isSame(s, 'date'));
         if (isSelected) {
