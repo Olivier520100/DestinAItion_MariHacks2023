@@ -11,14 +11,15 @@ export default function IndexPage() {
 
   const [active, setActive] = useState(0); //CHANGE EVERYTHING HERE
   const [depart, setDepart] = useState("")
-    const [destination, setDestination] = useState("")
+  const [destination, setDestination] = useState("")
+
   return (
     <>
       <div style={{ display: "flex", flexDirection: "row", width: "100vw"}}>
         {active == 0? <div style = {{display: "flex", flexDirection: "column"}}><LandingPage/> <City setActive = {setActive} setDestination = {setDestination} setDeparture = {setDepart}/></div>: <></>}
         {active !== 0? <><NavbarMinimal active = {active} setActive = {setActive}/> <div style={{marginTop: "5vh", marginLeft: "6vw"}}>
           {active == 1? <Flights fromWhere = {depart} toWhere = {destination}/> : <></> }
-          {active == 2? <DestinationPage/> : <></>}
+          {active == 2? <DestinationPage destination = {destination}/> : <></>}
         </div></> : <></>}
        
       </div>

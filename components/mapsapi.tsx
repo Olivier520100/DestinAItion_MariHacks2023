@@ -1,19 +1,21 @@
-import { GoogleMap, useLoadScript, Marker} from "@react-google-maps/api";
+import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
 import { useState, useEffect } from 'react';
 import { GetCoordinates } from './coordinates.js';
 
-export function Map({ locationtest }: { locationtest: string }) {
+export function Map({ locationtest }) {
   const [latgood, setLatgood] = useState(null);
   const [lnggood, setLnggood] = useState(null);
 
   useEffect(() => {
     const fetchCoordinates = async () => {
-      const [lat, lng] = await GetCoordinates(locationtest);
-      setLatgood(lat);
-      setLnggood(lng);
+      if (locationtest) {
+        const [lat, lng] = await GetCoordinates(locationtest);
+        setLatgood(lat);
+        setLnggood(lng);
+      }
     };
     fetchCoordinates();
-  }, []);
+  }, [locationtest]);
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyBGwo4KfC880qldYVqzMODQAIEmHt0pMeo",
@@ -24,12 +26,15 @@ export function Map({ locationtest }: { locationtest: string }) {
 
   return (
     <div style={{ height: "400px", width: "400px"}}>
-      <GoogleMap
-        
-        mapContainerStyle={{ height: "100%", width: "100%" }}
-        zoom={8}
-        center={{ lat: latgood, lng: lnggood }}
-      />
+      {latgood && lnggood ? (
+        <GoogleMap
+          mapContainerStyle={{ height: "100%", width: "100%" }}
+          zoom={8}
+          center={{ lat: latgood, lng: lnggood }}
+        />
+      ) : (
+        <div>Waiting for coordinates</div>
+      )}
     </div>
   );
 }
