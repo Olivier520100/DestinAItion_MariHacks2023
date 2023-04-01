@@ -2,6 +2,7 @@ import { Button, Group } from "@mantine/core";
 import { useState } from 'react';
 import { NavbarMinimal } from "../components/navbar";
 import Flights from "../components/flights";
+import DestinationPage from"../components/destinationspage"
 
 
 export default function IndexPage() {
@@ -15,6 +16,7 @@ export default function IndexPage() {
         {active == 0? <></> :<NavbarMinimal active = {active} setActive = {setActive}/>}
         <div style={{marginTop: "5vh", marginLeft: "6vw"}}>
           {active == 1? <Flights fromWhere = {depart} toWhere = {destination}/> : <></> }
+          {active == 2? <DestinationPage/> : <></>}
         </div>
       </div>
     </>
