@@ -18,7 +18,8 @@ def get_weather(city):
 
 @app.route('/wolfram/<input>')
 def get_wolfram(city):
-    url = f"http://api.wolframalpha.com/v1/spoken?appid=%22+key+%22&i=%22{input}%22+airport+iata+code%3f"
+    key = keys["wolfram"]
+    url = f"http://api.wolframalpha.com/v1/spoken?appid=%22{key}%22&i=%22{input}%22+airport+iata+code%3f"
 
     response = requests.get(url)
     if response.status_code == 200:
