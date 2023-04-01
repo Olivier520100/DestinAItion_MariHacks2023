@@ -58,26 +58,25 @@ function NavbarLink({ icon: Icon, label, active, onClick }: NavbarLinkProps) {
 
 const mockdata = [
   { icon: IconHome2, label: 'Home' },
-  { icon: IconMapPin, label: 'Destination' },
   { icon: IconPlane, label: 'Flights' },
+  { icon: IconMapPin, label: 'Destination' },
 ]
 
-export function NavbarMinimal() {
-  const [active, setActive] = useState(2);
+export function NavbarMinimal(props) {
 
   const links = mockdata.map((link, index) => (
     <NavbarLink
       {...link}
       key={link.label}
-      active={index === active}
-      onClick={() => setActive(index)}
+      active={index === props.active}
+      onClick={() => props.setActive(index)}
     />
   ));
 
   return (
     <Navbar height={750} width={{ base: 80 }} p="md">
       <Center>
-        <MantineLogo type="mark" size={30} />
+        <img style = {{width: "40px", height: "40px", borderRadius: "100%"}} src = 'https://img.craiyon.com/2023-04-01/d33d22484468487ca03bf2fd4b5fcd03.webp'/>
       </Center>
       <Navbar.Section grow mt={50}>
         <Stack justify="center" spacing={0}>
