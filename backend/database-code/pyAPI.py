@@ -25,7 +25,7 @@ def get_wolfram(input):
     if response.status_code == 200:
         # Success! Extract the data from the response
         data = response.json()
-        return json.dumps(data)
+        return (data)
     else:
         # Something went wrong, handle the error
         return "Error: ", response.status_code
