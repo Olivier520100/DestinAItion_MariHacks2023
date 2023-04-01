@@ -185,10 +185,8 @@ export default function City(props) {
       <div style = {{width: "200px"}}>
       </div>
       <TextInput value = {inputDest} onChange = {handleDest} label="Destination" placeholder="London (City Only)" classNames={classes} />
-      <div style={{position: "absolute", marginTop: "100px"}} className={classes.controls}>
-          <Button onClick = {handleClick} className={classes.control} variant="white" size="lg">
-            Get started
-          </Button>
+      <div style={{position: "absolute", marginTop: "100px"}}>
+          <Button onClick={handleClick} style={{}}>Get Started</Button>
         </div>
     </div>
   );
