@@ -1,111 +1,118 @@
-
-import { createStyles, Image, Card, Text, Group, Button, getStylesRef, rem } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
-import { IconStar } from '@tabler/icons-react';
-import { useEffect, useState } from 'react';
-
+import { useMediaQuery } from '@mantine/hooks';
+import { createStyles, Paper, Text, Title, Button, useMantineTheme, rem } from '@mantine/core';
 
 const useStyles = createStyles((theme) => ({
-  price: {
-    color: theme.colorScheme === 'dark' ? theme.white : theme.black,
+  card: {
+    height: rem(440),
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
+    alignItems: 'flex-start',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
   },
 
-  carousel: {
-    '&:hover': {
-      [`& .${getStylesRef('carouselControls')}`]: {
-        opacity: 1,
-      },
-    },
+  title: {
+    fontFamily: `Greycliff CF, ${theme.fontFamily}`,
+    fontWeight: 900,
+    color: theme.white,
+    lineHeight: 1.2,
+    fontSize: rem(32),
+    marginTop: theme.spacing.xs,
   },
 
-  carouselControls: {
-    ref: getStylesRef('carouselControls'),
-    transition: 'opacity 150ms ease',
-    opacity: 0,
-  },
-
-  carouselIndicator: {
-    width: rem(4),
-    height: rem(4),
-    transition: 'width 250ms ease',
-
-    '&[data-active]': {
-      width: rem(16),
-    },
+  category: {
+    color: theme.white,
+    opacity: 0.7,
+    fontWeight: 700,
+    textTransform: 'uppercase',
   },
 }));
 
-async function GetImages(location) {
-  const apiUrl = `https://serpapi.com/search.json?q=Apple&tbm=isch&ijn=0`;
-  console.log(apiUrl)
-  try {
-    const response = await fetch(apiUrl);
-    const data = await response.json();
-    const pic1 = data.images_results[0].original;
-    const pic2 = data.images_results[1].original;
-
-    console.log(pic1);
-    console.log(pic2);
-    return [pic1, pic2]
-
-  } catch (error) {
-    console.error(`Error fetching Images: ${error.message}`);
-  }
+interface CardProps {
+  image: string;
+  title: string;
+  category: string;
 }
 
-
-
-
-export function CarouselCard({ locationtest }: { locationtest: string }) {
-
-  const [latgood, setLatgood] = useState(null);
-  const [lnggood, setLnggood] = useState(null);
-
-  useEffect(() => {
-    const fetchCoordinates = async () => {
-      const [lat, lng] = await GetImages(locationtest);
-      setLatgood(lat);
-      setLnggood(lng);
-    };
-    fetchCoordinates();
-  }, []);
-
-  const images = [
-    latgood,
-    lnggood,
-  ];
-  const getName = <Text fw={500} fz="lg">{locationtest}</Text>
-
+function Card({ image, title, category }: CardProps) {
   const { classes } = useStyles();
 
-  const slides = images.map((image) => (
-    <Carousel.Slide key={image}>
-      <Image src={image} height={220} />
+  return (
+    <Paper
+      shadow="md"
+      p="xl"
+      radius="md"
+      sx={{ backgroundImage: `url(${image})` }}
+      className={classes.card}
+    >
+      <div>
+        <Text className={classes.category} size="xs">
+          {category}
+        </Text>
+        <Title order={3} className={classes.title}>
+          {title}
+        </Title>
+      </div>
+      <Button variant="white" color="dark">
+        Read article
+      </Button>
+    </Paper>
+  );
+}
+
+const data = [
+  {
+    image:
+      'https://images.unsplash.com/photo-1508193638397-1c4234db14d8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+    title: 'Best forests to visit in North America',
+    category: 'nature',
+  },
+  {
+    image:
+      'https://images.unsplash.com/photo-1559494007-9f5847c49d94?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+    title: 'Hawaii beaches review: better than you think',
+    category: 'beach',
+  },
+  {
+    image:
+      'https://images.unsplash.com/photo-1608481337062-4093bf3ed404?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+    title: 'Mountains at night: 12 best locations to enjoy the view',
+    category: 'nature',
+  },
+  {
+    image:
+      'https://images.unsplash.com/photo-1507272931001-fc06c17e4f43?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+    title: 'Aurora in Norway: when to visit for best experience',
+    category: 'nature',
+  },
+  {
+    image:
+      'https://images.unsplash.com/photo-1510798831971-661eb04b3739?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&q=80',
+    title: 'Best places to visit this winter',
+    category: 'tourism',
+  },
+];
+
+export function CardsCarousel() {
+  const theme = useMantineTheme();
+  const mobile = useMediaQuery(`(max-width: ${theme.breakpoints.sm})`);
+  const slides = data.map((item) => (
+    <Carousel.Slide key={item.title}>
+      <Card {...item} />
     </Carousel.Slide>
   ));
 
   return (
-    <Card radius="md" withBorder padding="xl">
-      <Card.Section>
-        <Carousel
-          withIndicators
-          loop
-          classNames={{
-            root: classes.carousel,
-            controls: classes.carouselControls,
-            indicator: classes.carouselIndicator,
-          }}
-        >
-          {slides}
-        </Carousel>
-      </Card.Section>
-
-      <Group position="apart" mt="lg">
-        {getName}
-        <Group spacing={5}>
-        <Button radius="md">Tour</Button>
-        </Group>
-      </Group>
-    </Card>
+    <Carousel
+      slideSize="100%"
+      breakpoints={[{ maxWidth: 'sm', slideSize: '100%', slideGap: rem(0) }]}
+      slideGap="xl"
+      align="start"
+      
+    >
+      {slides}
+    </Carousel>
   );
 }
