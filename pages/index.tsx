@@ -6,6 +6,7 @@ import { DestinationPage } from "../components/destinationspage.js";
 
 
 export default function IndexPage() {
+  return <DestinationPage/>;
 }
 
 
