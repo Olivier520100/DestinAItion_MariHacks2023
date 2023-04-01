@@ -16,35 +16,6 @@ def get_weather(city):
     return jsonify(data)
 
 
-@app.route('/wolfram/<input>')
-def get_wolfram(input):
-    key = keys["wolfram"]
-    url = f"http://api.wolframalpha.com/v1/spoken?appid={key}&i={input}+airport+iata+code%3f"
-
-    response = requests.get(url)
-    if response.status_code == 200:
-        # Success! Extract the data from the response
-        data = response.json()
-        return (data)
-    else:
-        # Something went wrong, handle the error
-        return "Error: ", response.status_code
-
-
-@app.route('/flights/<fromWhere>/<toWhere>')
-def get_flights(fromWhere, toWhere):
-    url = f"https://www.cheapflights.ca/a/api/flightPricePrediction/coloredCalendar/oneWay?origin={fromWhere}&destination={toWhere}&dateMode=single&distinct=false"
-    response = requests.get(url)
-    if response.status_code == 200:
-        # Success! Extract the data from the response
-        data = response.json()
-        return json.dumps(data)
-    else:
-        # Something went wrong, handle the error
-        print("Error: ", response.status_code)
-        return 0
-
-
 @app.route('/image/<city>')
 def get_image(city):
     def get_image_urls(prompt):
