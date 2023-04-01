@@ -22,7 +22,7 @@ export default function DestinationPage(props) {
         .then(response => response.text())
         .then(data => {
           let myData = data.toString();
-          let newData = myData.split(" ")[0];
+          let newData = myData.split(",")[0];
           setCity(newData.toLowerCase());
         });
     } catch {
