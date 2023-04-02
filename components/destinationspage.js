@@ -37,11 +37,12 @@ export default function DestinationPage(props) {
 
   return (
     <Container my="md">
-      <SimpleGrid cols={2} spacing="md" breakpoints={[{ maxWidth: '600px', cols: 1 }]}>
-        <Gridbox><Map style = {{marginTop: "px"}} locationtest={city}/></Gridbox>
-        <Gridbox >
+      <SimpleGrid cols={3} spacing="md" breakpoints={[{ maxWidth: '600px', cols: 1 }]}>
+        <div><Map style = {{marginTop: "px"}} locationtest={city}/></div>
+        <div ></div>
+        <div >
           <CardsCarousel/>
-        </Gridbox>
+        </div>
             
           
       </SimpleGrid>
