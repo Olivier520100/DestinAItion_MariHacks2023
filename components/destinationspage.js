@@ -40,11 +40,9 @@ export default function DestinationPage(props) {
       <SimpleGrid cols={3} spacing="md" breakpoints={[{ maxWidth: '600px', cols: 1 }]}>
         <div><Map style = {{marginTop: "px"}} locationtest={city}/></div>
         <div ></div>
-        <div >
+        <div>
           <CardsCarousel/>
         </div>
-            
-          
       </SimpleGrid>
     </Container>
   );
