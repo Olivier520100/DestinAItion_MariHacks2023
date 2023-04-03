@@ -9,7 +9,8 @@ import { useState } from 'react';
 
 const useStyles = createStyles((theme) => ({
   card: {
-    height: rem(600),
+    height: "600px",
+    width: "600px",
     flexDirection: 'column',
     justifyContent: 'space-between',
     alignItems: 'flex-start',
@@ -135,6 +136,7 @@ export function CardsCarousel(locationsin) {
       breakpoints={[{ maxWidth: 'sm', slideSize: '100%', slideGap: rem(0) }]}
       slideGap="xl"
       align="start"
+      loop
       
     >
       {slides}

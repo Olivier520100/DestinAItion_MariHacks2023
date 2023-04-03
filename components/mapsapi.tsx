@@ -31,7 +31,8 @@ export function Map({ locationtest }) {
           mapContainerStyle={{ height: "100%", width: "100%", borderRadius: "10px" }}
           zoom={8}
           center={{ lat: latgood, lng: lnggood }}
-        />
+        >
+        </GoogleMap>
       ) : (
         <div>Waiting for coordinates</div>
       )}
